@@ -7,8 +7,8 @@ export default function Home() {
         src="/profile.png"
         alt="Phromsawat Phoolprom"
         width={200}
-        height={200}
-        className="rounded-full object-cover"
+        height={250}
+        className="object-contain"
         priority
       />
       <h1 className="text-4xl font-bold">Portfolio</h1>
