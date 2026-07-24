@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 gap-8">
-      <div className="w-48 h-44 overflow-hidden">
+      <div className="w-48 h-60 overflow-hidden">
         <Image
           src="/profile.png"
           alt="Phromsawat Phoolprom"
