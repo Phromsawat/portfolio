@@ -18,7 +18,9 @@
 ## Visual Style
 
 - **Theme**: Dark mode เป็นหลัก, รองรับ light mode
-- **Font**: System font stack (ไม่มี external font load)
+- **Font (EN)**: [Inter](https://fonts.google.com/specimen/Inter) — `next/font/google`, variable `--font-inter`
+- **Font (TH)**: [Noto Sans Thai](https://fonts.google.com/specimen/Noto+Sans+Thai) — `next/font/google`, variable `--font-noto-sans-thai`
+- **Font stack**: `var(--font-inter), var(--font-noto-sans-thai), ui-sans-serif, system-ui`
 - **Color palette**: ยังไม่กำหนด — อัปเดตเมื่อตัดสินใจ
 - **Spacing**: Tailwind default scale (4px base)
 
@@ -54,3 +56,4 @@ src/
 | 2026-07-24 | Next.js App Router | Server Components, streaming, layouts |
 | 2026-07-24 | Tailwind CSS 4 | utility-first, ไม่ต้องเขียน CSS เอง |
 | 2026-07-24 | Bun | เร็วกว่า npm/yarn |
+| 2026-07-24 | Inter + Noto Sans Thai | Inter สำหรับ EN, Noto Sans Thai สำหรับ TH — load ผ่าน next/font (self-hosted, no FOUT) |
