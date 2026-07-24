@@ -1,5 +1,49 @@
 @import "tailwindcss";
 
+* {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
 @theme {
   --font-sans: var(--font-inter), var(--font-noto-sans-thai), ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes bubble-in {
+  from { opacity: 0; transform: translateX(-8px) scale(0.95); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.chat-bubble-1 {
+  display: none;
+}
+.chat-bubble-2 {
+  display: none;
+}
+.chat-bubble-3 {
+  display: none;
+}
+.group:hover .chat-bubble-1 {
+  display: block;
+  animation: bubble-in 0.2s ease-out forwards;
+}
+.group:hover .chat-bubble-2 {
+  display: block;
+  animation: bubble-in 0.2s ease-out 0.25s both;
+}
+.group:hover .chat-bubble-3 {
+  display: block;
+  animation: bubble-in 0.2s ease-out 0.5s both;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-8deg) scale(1.05); }
+  25% { transform: rotate(8deg) scale(1.05); }
+  50% { transform: rotate(-5deg) scale(1.1); }
+  75% { transform: rotate(5deg) scale(1.05); }
+}
+
+.wiggle:hover {
+  animation: wiggle 0.4s ease-in-out infinite;
 }

@@ -10,6 +10,7 @@ const inter = Inter({
 
 const notoSansThai = Noto_Sans_Thai({
   subsets: ["thai"],
+  weight: ["300", "400", "500"],
   variable: "--font-noto-sans-thai",
   display: "swap",
 });
@@ -26,7 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="th" className={`${inter.variable} ${notoSansThai.variable}`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        {children}
+      </body>
     </html>
   );
 }
