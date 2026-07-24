@@ -33,6 +33,7 @@ const projects = [
         { name: "Tailwind CSS", icon: "/skill-tailwind.webp" },
         { name: "Git", icon: "/skill-git.svg" },
         { name: "Claude Code", icon: "/skill-claude.svg" },
+        { name: "Vercel", icon: "/skill-vercel.svg" },
       ],
     },
   },
