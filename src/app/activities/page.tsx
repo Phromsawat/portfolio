@@ -198,6 +198,7 @@ export default function ActivitiesPage() {
   const locked = useRef(false);
   const currentRef = useRef(0);
   const lastWheelTime = useRef(0);
+  const touchStartY = useRef(0);
 
   useEffect(() => {
     const stored = localStorage.getItem("lang") as "th" | "en";
@@ -232,8 +233,29 @@ export default function ActivitiesPage() {
     return () => window.removeEventListener("wheel", onWheel);
   }, [goTo]);
 
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartY.current - e.changedTouches[0].clientY;
+    if (Math.abs(diff) < 50) return;
+    const now = Date.now();
+    if (locked.current || now - lastWheelTime.current < 1000) return;
+    locked.current = true;
+    lastWheelTime.current = now;
+    setTimeout(() => { locked.current = false; }, 1000);
+    if (diff > 0) goTo(currentRef.current + 1);
+    else goTo(currentRef.current - 1);
+  };
+
   return (
-    <div className="h-screen overflow-hidden relative">
+    <div
+      className="h-screen overflow-hidden relative"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {sections[current].label && (
         <h2 className="absolute left-24 top-28 text-4xl font-light text-gray-800 z-10 pointer-events-none">
           {sections[current].label}

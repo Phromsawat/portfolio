@@ -23,7 +23,6 @@ export default function DrawingCanvas() {
 
     const onDown = (e: MouseEvent) => {
       if ((e.target as HTMLElement).closest(".no-draw")) return;
-      e.preventDefault();
       drawing.current = true;
       lastPos.current = { x: e.clientX, y: e.clientY };
     };
