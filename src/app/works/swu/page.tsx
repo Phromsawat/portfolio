@@ -147,15 +147,6 @@ export default function SWUPage() {
         </div>
       </FocusSection>
 
-      <button
-        onClick={() => router.back()}
-        className="flex items-center gap-2 text-sm font-light text-gray-400 hover:text-gray-700 transition-colors mt-16 w-fit"
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        {lang === "th" ? "ย้อนกลับ" : "Back"}
-      </button>
     </main>
   );
 }
