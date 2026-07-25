@@ -5,10 +5,12 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/profile", label: "Profile" },
-  { href: "/works", label: "Works" },
-  { href: "/research", label: "Research" },
+  { href: "/", th: "หน้าหลัก", en: "Home" },
+  { href: "/profile", th: "โปรไฟล์", en: "Profile" },
+  { href: "/works", th: "งาน", en: "Works" },
+  { href: "/research", th: "วิจัย", en: "Research" },
+  { href: "/cv", th: "CV & ทรานสคริป", en: "CV & Transcript" },
+  { href: "/activities", th: "กิจกรรม", en: "Activities" },
 ];
 
 export default function NavBar() {
@@ -18,6 +20,9 @@ export default function NavBar() {
   useEffect(() => {
     const stored = localStorage.getItem("lang") as "th" | "en";
     if (stored) setLang(stored);
+    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "th");
+    window.addEventListener("langchange", onLang);
+    return () => window.removeEventListener("langchange", onLang);
   }, []);
 
   const changeLang = (l: "th" | "en") => {
@@ -27,9 +32,9 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center px-12 py-6">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center px-12 py-6 bg-white/70 backdrop-blur-md">
       <div className="flex gap-10 flex-1">
-        {links.map(({ href, label }) => {
+        {links.map(({ href, th, en }) => {
           const active = pathname === href || (href !== "/" && pathname.startsWith(href));
           return (
             <Link
@@ -37,7 +42,7 @@ export default function NavBar() {
               href={href}
               className={`text-sm font-light transition-colors ${active ? "text-gray-800" : "text-gray-300 hover:text-gray-600"}`}
             >
-              {label}
+              {lang === "th" ? th : en}
             </Link>
           );
         })}

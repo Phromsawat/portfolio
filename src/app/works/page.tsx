@@ -1,41 +1,31 @@
 "use client";
 import { useState, useEffect } from "react";
-import QRCode from "react-qr-code";
+import Link from "next/link";
 
-const projects = [
+const entries = [
   {
-    org: { th: "กรมวิชาการเกษตร (DOA)", en: "DEPARTMENT OF AGRICULTURE (DOA)" },
-    orgLogo: "/org-doa.png",
-    url: "https://doa-test-kit.vercel.app/",
-    role: {
+    org: { th: "กรมวิชาการเกษตร (DOA)", en: "Department of Agriculture (DOA)" },
+    logo: "/org-doa.png",
+    period: { th: "เม.ย. 2026 – ปัจจุบัน", en: "APR 2026 – Present" },
+    desc: {
       th: "Full Stack Web Developer ระบบวิเคราะห์ดินและแนะนำปุ๋ย",
-      en: "Full Stack Web Developer Soil Analysis & Fertilizer Recommendation System",
+      en: "Full Stack Web Developer · Soil Analysis & Fertilizer Recommendation",
     },
-    period: "APR 2026–Present",
-    intro: {
-      th: "DOA Soil Analysis คือ Progressive Web Application (PWA) สำหรับวิเคราะห์คุณภาพดินโดยใช้ชุดทดสอบดินของกรมวิชาการเกษตร ระบบช่วยให้เกษตรกรสามารถอัพโหลดภาพถ่ายสีดินแล้วเทียบสีด้วย AI Color Matching หรือกรอกผลด้วยตนเอง จากนั้นระบบแนะนำสูตรปุ๋ย (Fertilizer Recommendation) ที่เหมาะสมกับพืชแต่ละชนิด ตัวเว็บออกแบบด้วย Clean and Accessible UI รองรับการใช้งานสองภาษา (ไทย/อังกฤษ) พร้อมบันทึกประวัติการวิเคราะห์ของผู้ใช้แต่ละคนได้อย่างปลอดภัย",
-      en: "DOA Soil Analysis is a Progressive Web Application (PWA) for soil quality analysis using Department of Agriculture soil testing kits. Farmers can upload soil color photos and compare via AI Color Matching or input manually. The system then recommends appropriate fertilizer formulas by crop type. The web app features a Clean and Accessible UI with bilingual support (Thai/English) and secure per-user analysis history.",
+    tags: ["Web App", "Design System"],
+    href: "/works/doa",
+    freelance: true,
+  },
+  {
+    org: { th: "I-BITZ COMPANY LIMITED", en: "I-BITZ COMPANY LIMITED" },
+    logo: "/org-ibitz.png",
+    period: { th: "ส.ค. – พ.ย. 2025", en: "AUG – NOV 2025" },
+    desc: {
+      th: "UX/UI Design & Front-End, MoodMap Project",
+      en: "UX/UI Design & Front-End, MoodMap Project",
     },
-    myRole: {
-      th: "รับผิดชอบหลักด้าน Front-End ตั้งแต่การออกแบบสถาปัตยกรรม UI (Architecture) การพัฒนาหน้าจอทั้งหมดด้วย Next.js 15 (React 19) รวมถึงระบบ Bilingual (ไทย/อังกฤษ) และ PWA Configuration โดยมีส่วนร่วมกับ Back-End เช่น การเชื่อมต่อ Supabase API",
-      en: "Primarily responsible for Front-End from UI Architecture design, developing all screens with Next.js 15 (React 19), including Bilingual (Thai/English) system and PWA Configuration, with Back-End involvement such as Supabase API integration.",
-    },
-    tools: {
-      design: [
-        { name: "Google Stitch", icon: null },
-      ],
-      development: [
-        { name: "Antigravity IDE", icon: "/skill-antigravity.png" },
-        { name: "Next.js 15", icon: "/skill-nextjs.png" },
-        { name: "FastAPI", icon: "/skill-extra.png" },
-        { name: "PostgreSQL", icon: "/skill-postgresql.svg" },
-        { name: "Supabase", icon: "/skill-supabase.svg" },
-        { name: "Tailwind CSS", icon: "/skill-tailwind.webp" },
-        { name: "Git", icon: "/skill-git.svg" },
-        { name: "Claude Code", icon: "/skill-claude.svg" },
-        { name: "Vercel", icon: "/skill-vercel.svg" },
-      ],
-    },
+    tags: ["UX/UI Design", "Front-End"],
+    href: "/works/ibitz",
+    intern: true,
   },
 ];
 
@@ -50,86 +40,120 @@ export default function WorksPage() {
     return () => window.removeEventListener("langchange", onLang);
   }, []);
 
+  const heading = { th: "สำรวจผลงานของฉัน", en: "Explore My Work" };
+  const subtext = {
+    th: "รวบรวมผลงานที่ผมได้ร่วมพัฒนา ครอบคลุมตั้งแต่ระบบ Full Stack ไปจนถึง Design System",
+    en: "A collection of projects I've built, ranging from full stack systems to design systems.",
+  };
+
   return (
-    <main className="flex min-h-screen flex-col px-24 pt-28 pb-24">
-      <h1 className="text-7xl font-light text-gray-800 mb-16">
-        PROFESSIONAL EXPERIENCE
-      </h1>
-      <div className="flex flex-col gap-16">
-        {projects.map((p, i) => (
-          <div key={i} className="flex flex-col gap-8 border-t border-gray-200 pt-10">
-            <div className="flex items-start justify-between gap-8">
-              <div className="flex items-start gap-4">
-                {p.orgLogo && <img src={p.orgLogo} alt={p.org[lang]} className="w-12 h-12 object-contain flex-shrink-0" />}
+    <main className="flex min-h-screen flex-col px-24 pt-28 pb-32">
+      <div className="grid grid-cols-2 gap-16 mb-20">
+        <div>
+          <h1 className="text-5xl font-light text-gray-900 leading-tight">
+            {heading[lang]}
+          </h1>
+          <p className="text-xs font-light text-gray-400 mt-3">
+            {lang === "th" ? "คลิกเพื่อดูผลงาน" : "Click to explore"}
+          </p>
+        </div>
+        <p className="text-sm font-light text-gray-400 leading-relaxed self-end">
+          {subtext[lang]}
+        </p>
+      </div>
+
+      <div className="flex flex-col">
+        {entries.map((e, i) => (
+          <Link key={i} href={e.href} className="group">
+            <div className="grid grid-cols-[2fr_2fr_1fr] items-start gap-8 py-8 border-t border-gray-200 transition-opacity group-hover:opacity-50">
+              <div className="flex items-start gap-3">
+                <img src={e.logo} alt={e.org.en} className="w-10 h-10 object-contain flex-shrink-0 mt-1" />
                 <div>
-                  <p className="text-xs font-light text-gray-400 tracking-widest uppercase mb-2">{p.org[lang]}</p>
-                  <h2 className="text-2xl font-light text-gray-800">{p.role[lang]}</h2>
+                  <h2 className="text-2xl font-light text-gray-900">{e.org[lang]}</h2>
+                  <div className="flex items-center gap-2 mt-1">
+                    <p className="text-sm font-light text-gray-400">· {e.period[lang]}</p>
+                    {e.freelance && (
+                      <span className="text-xs font-light text-gray-400 border border-gray-300 rounded-full px-2 py-0.5 whitespace-nowrap flex-shrink-0">
+                        {lang === "th" ? "ฟรีแลนซ์" : "Freelance"}
+                      </span>
+                    )}
+                    {e.intern && (
+                      <span className="text-xs font-light text-gray-400 border border-gray-300 rounded-full px-2 py-0.5 whitespace-nowrap flex-shrink-0">
+                        {lang === "th" ? "อินเทิร์น" : "Intern"}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-              <p className="text-sm font-light text-gray-400 flex-shrink-0">{p.period}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-16">
-              <div className="flex flex-col gap-6">
-                <div>
-                  <p className="text-xs font-light text-gray-400 tracking-widest uppercase mb-3">
-                    {lang === "th" ? "เกี่ยวกับโปรเจกต์" : "Introduction"}
-                  </p>
-                  <p className="text-sm font-light text-gray-600 leading-relaxed">{p.intro[lang]}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-light text-gray-400 tracking-widest uppercase mb-3">
-                    {lang === "th" ? "บทบาทของฉัน" : "My Role"}
-                  </p>
-                  <p className="text-sm font-light text-gray-600 leading-relaxed">{p.myRole[lang]}</p>
-                </div>
-              </div>
-
-              <div>
-                {p.url && (
-                  <div className="mb-6">
-                    <p className="text-xs font-light text-gray-400 tracking-widest uppercase mb-3">
-                      {lang === "th" ? "ลิงค์โปรเจกต์" : "Project Link"}
-                    </p>
-                    <div className="flex flex-col items-center gap-2 w-fit">
-                      <QRCode value={p.url} size={80} style={{ height: "auto", maxWidth: "80px", width: "80px" }} />
-                      <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-xs font-light text-gray-500 hover:text-gray-800 transition-colors text-center">
-                        {p.url}
-                      </a>
-                    </div>
-                  </div>
-                )}
-                <p className="text-xs font-light text-gray-400 tracking-widest uppercase mb-4">
-                  {lang === "th" ? "เครื่องมือที่ใช้" : "Tools"}
-                </p>
-                <div className="flex flex-col gap-5">
-                  <div>
-                    <p className="text-xs font-light text-gray-400 mb-2">Design</p>
-                    <div className="flex flex-wrap gap-3">
-                      {p.tools.design.map(({ name, icon }) => (
-                        <div key={name} className="flex items-center gap-2">
-                          {icon && <img src={icon} alt={name} className="w-5 h-5 object-contain" />}
-                          <span className="text-sm font-light text-gray-700">{name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-xs font-light text-gray-400 mb-2">Development</p>
-                    <div className="flex flex-wrap gap-3">
-                      {p.tools.development.map(({ name, icon }) => (
-                        <div key={name} className="flex items-center gap-2">
-                          {icon && <img src={icon} alt={name} className="w-5 h-5 object-contain" />}
-                          <span className="text-sm font-light text-gray-700">{name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              <p className="text-sm font-light text-gray-500 leading-relaxed">{e.desc[lang]}</p>
+              <div className="flex flex-wrap gap-2 justify-end">
+                {e.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs font-light text-gray-500 bg-gray-200 rounded-full px-3 py-1"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
+        <div className="grid grid-cols-2 gap-16 py-8 border-t border-gray-200">
+          <p className="text-sm font-light text-gray-400 leading-relaxed self-start pt-1">
+            {lang === "th"
+              ? "รวมถึงผลงานด้าน GIS Analysis และข้อมูลเชิงพื้นที่"
+              : "Including GIS Analysis & spatial data work."}
+          </p>
+          <div className="flex flex-col gap-8">
+            {[
+              {
+                href: "/works/dwr",
+                logo: "/org-dwr.png",
+                name: { th: "กรมทรัพยากรน้ำ", en: "Department of Water Resources" },
+                sub: { th: "Bangkok, TH · นักวิเคราะห์ข้อมูลเชิงพื้นที่ (Project-based)", en: "Bangkok, TH · Geospatial Data Analyst (Project-based)" },
+                period: "APR – DEC 2025",
+                tags: ["GIS Analysis", "Data Pipeline"],
+              },
+              {
+                href: "/works/swu",
+                logo: "/org-swu.svg",
+                name: { th: "มหาวิทยาลัยศรีนครินทรวิโรฒ", en: "Srinakharinwirot University" },
+                sub: { th: "Bangkok & Nakhon Nayok, TH · นักวิจัยและผู้ฝึกอบรม GIS ภาคสนาม (Project-based)", en: "Bangkok & Nakhon Nayok, TH · GIS Field Researcher & Trainer (Project-based)" },
+                period: "MAY 2024 – JUL 2025",
+                tags: ["GIS Analysis", "Carbon Analysis"],
+              },
+              {
+                href: "/works/egat",
+                logo: "/org-egat.svg",
+                logo2: "/org-siit.png",
+                name: { th: "กฟผ. & SIIT มหาวิทยาลัยธรรมศาสตร์", en: "EGAT & SIIT, Thammasat University" },
+                sub: { th: "Bangkok, TH · ผู้เชี่ยวชาญข้อมูล GIS (Project-based)", en: "Bangkok, TH · GIS Data Specialist (Project-based)" },
+                period: "JUN – OCT 2024",
+                tags: ["Satellite Imagery", "Deep Learning"],
+              },
+            ].map((g) => (
+              <Link key={g.href} href={g.href} className="group transition-opacity hover:opacity-50">
+                <div className="flex items-start gap-3">
+                  <div className="flex items-center gap-1 flex-shrink-0 mt-0.5">
+                    <img src={g.logo} alt={g.name.en} className="w-8 h-8 object-contain" />
+                    {"logo2" in g && g.logo2 && <img src={g.logo2} alt={g.name.en} className="w-8 h-8 object-contain" />}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-sm font-light text-gray-900">{g.name[lang]}</span>
+                    <span className="text-xs font-light text-gray-400 mt-0.5">{g.sub[lang]}</span>
+                    <span className="text-xs font-light text-gray-300 mt-0.5">{g.period}</span>
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {g.tags.map((tag) => (
+                        <span key={tag} className="text-xs font-light text-gray-500 bg-gray-200 rounded-full px-3 py-1">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </main>
   );
