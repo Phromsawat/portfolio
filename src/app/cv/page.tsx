@@ -7,6 +7,9 @@ export default function CVPage() {
   const [lang, setLang] = useState<"th" | "en">("en");
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("tab") === "transcript") setTab("transcript");
+
     const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "en");
     window.addEventListener("langchange", onLang);
     return () => window.removeEventListener("langchange", onLang);
@@ -33,7 +36,7 @@ export default function CVPage() {
           </div>
         </div>
         <Link
-          href="/"
+          href={tab === "transcript" ? "/profile?section=education" : "/"}
           className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-900 transition-colors text-lg leading-none"
         >
           ✕

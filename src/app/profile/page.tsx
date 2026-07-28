@@ -26,21 +26,21 @@ function CertSection({ lang }: { lang: "th" | "en" }) {
   const certs = [
     {
       src: "/cert-arcgis-1.png",
-      name: lang === "th" ? "ArcGIS Bootcamp ครั้งที่ 3 — Mapping a sustainable future with GeoAI" : "ArcGIS Bootcamp #3 — Mapping a sustainable future with GeoAI",
+      name: lang === "th" ? "ArcGIS Bootcamp ครั้งที่ 3 Mapping a sustainable future with GeoAI" : "ArcGIS Bootcamp #3 Mapping a sustainable future with GeoAI",
       issuer: "ESRI Thailand",
       year: "Jul 2024",
       type: "Certificate",
     },
     {
       src: "/cert-tomtom-1.png",
-      name: "Certificate of Participation — OpenStreetMap Training & Editing",
+      name: "Certificate of Participation OpenStreetMap Training & Editing",
       issuer: "TomTom",
       year: "Feb 2024",
       type: "Participation",
     },
     {
       src: "/cert-foss4g-1.png",
-      name: "Certificate of Appreciation — Volunteer",
+      name: "Certificate of Appreciation Volunteer",
       issuer: "FOSS4G Asia 2024",
       year: "Dec 2024",
       type: "Appreciation",
@@ -181,7 +181,7 @@ const makeSections = (lang: "th" | "en") => [
   {
     label: lang === "th" ? "การศึกษา" : "Education",
     content: (
-      <div className="grid grid-cols-2 gap-16 items-center w-full">
+      <div className="w-full">
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-3">
             <img src="/swu-logo.svg" alt="SWU" className="w-10 h-10 object-contain flex-shrink-0" />
@@ -206,15 +206,12 @@ const makeSections = (lang: "th" | "en") => [
               <span className="text-sm font-light text-gray-700">{lang === "th" ? "พฤษภาคม 2569" : "May 2026"}</span>
             </div>
           </div>
-        </div>
-        <div className="flex justify-center">
-          <Image
-            src="/graduation-photo.jpeg"
-            alt="Graduation"
-            width={260}
-            height={362}
-            className="rounded-2xl shadow-sm"
-          />
+          <a
+            href="/cv?tab=transcript"
+            className="w-fit rounded-full border border-gray-300 px-3 py-1 text-xs font-light text-gray-500 transition-colors hover:border-gray-500 hover:text-gray-900"
+          >
+            {lang === "th" ? "ดูใบทรานสคริป ↗" : "View Transcript ↗"}
+          </a>
         </div>
       </div>
     ),
@@ -330,6 +327,12 @@ export default function ProfilePage() {
   const locked = useRef(false);
   const currentRef = useRef(0);
   const lastWheelTime = useRef(0);
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("section") === "education") {
+      setCurrent(2);
+    }
+  }, []);
 
   useEffect(() => {
     const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "en");
