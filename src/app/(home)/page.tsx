@@ -34,7 +34,7 @@ const content = {
 
 export default function Home() {
   const router = useRouter();
-  const [lang, setLang] = useState<"th" | "en">("th");
+  const [lang, setLang] = useState<"th" | "en">("en");
   const [step, setStep] = useState(0);
   const handleCVClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -44,12 +44,8 @@ export default function Home() {
   const changeLang = (l: "th" | "en") => {
     setLang(l);
     localStorage.setItem("lang", l);
+    window.dispatchEvent(new Event("langchange"));
   };
-
-  useEffect(() => {
-    const stored = localStorage.getItem("lang") as "th" | "en";
-    if (stored) setLang(stored);
-  }, []);
 
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];

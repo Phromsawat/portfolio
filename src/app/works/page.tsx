@@ -30,12 +30,10 @@ const entries = [
 ];
 
 export default function WorksPage() {
-  const [lang, setLang] = useState<"th" | "en">("th");
+  const [lang, setLang] = useState<"th" | "en">("en");
 
   useEffect(() => {
-    const stored = localStorage.getItem("lang") as "th" | "en";
-    if (stored) setLang(stored);
-    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "th");
+    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "en");
     window.addEventListener("langchange", onLang);
     return () => window.removeEventListener("langchange", onLang);
   }, []);
@@ -135,15 +133,21 @@ export default function WorksPage() {
             ].map((g) => (
               <Link key={g.href} href={g.href} className="group transition-opacity hover:opacity-50">
                 <div className="flex items-start gap-3">
-                  <div className="flex items-center gap-1 flex-shrink-0 mt-0.5">
-                    <img src={g.logo} alt={g.name.en} className="w-8 h-8 object-contain" />
-                    {"logo2" in g && g.logo2 && <img src={g.logo2} alt={g.name.en} className="w-8 h-8 object-contain" />}
+                  <div className={`flex items-center gap-1 flex-shrink-0 mt-0.5 ${"logo2" in g && g.logo2 ? "relative -left-9" : ""}`}>
+                    <img
+                      src={g.logo}
+                      alt={g.name.en}
+                      className="w-8 h-8 object-contain"
+                    />
+                    {"logo2" in g && g.logo2 && (
+                      <img src={g.logo2} alt={g.name.en} className="w-8 h-8 object-contain" />
+                    )}
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className={`flex flex-1 flex-col gap-2 ${"logo2" in g && g.logo2 ? "-ml-9" : ""}`}>
                     <span className="text-sm font-light text-gray-900">{g.name[lang]}</span>
                     <span className="text-xs font-light text-gray-400 mt-0.5">{g.sub[lang]}</span>
                     <span className="text-xs font-light text-gray-300 mt-0.5">{g.period}</span>
-                    <div className="flex flex-wrap gap-2 mt-1">
+                    <div className="flex flex-wrap justify-end gap-2 mt-1">
                       {g.tags.map((tag) => (
                         <span key={tag} className="text-xs font-light text-gray-500 bg-gray-200 rounded-full px-3 py-1">{tag}</span>
                       ))}

@@ -192,7 +192,7 @@ const makeSections = (lang: "th" | "en") => [
 ];
 
 export default function ActivitiesPage() {
-  const [lang, setLang] = useState<"th" | "en">("th");
+  const [lang, setLang] = useState<"th" | "en">("en");
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
   const locked = useRef(false);
@@ -201,9 +201,7 @@ export default function ActivitiesPage() {
   const touchStartY = useRef(0);
 
   useEffect(() => {
-    const stored = localStorage.getItem("lang") as "th" | "en";
-    if (stored) setLang(stored);
-    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "th");
+    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "en");
     window.addEventListener("langchange", onLang);
     return () => window.removeEventListener("langchange", onLang);
   }, []);

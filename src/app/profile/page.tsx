@@ -120,15 +120,14 @@ const makeSections = (lang: "th" | "en") => [
           </div>
           <p className="text-sm font-light text-gray-500 leading-relaxed max-w-sm">
             {lang === "th"
-              ? "GIS Web Developer & GIS Specialist · B.Sc. ภูมิศาสตร์และภูมิสารสนเทศ มศว"
-              : "GIS Web Developer & GIS Specialist · B.Sc. Geography & Geoinformatics, SWU"}
+              ? "GIS Web Developer & GIS Specialist · B.Sc. ภูมิศาสตร์และภูมิสารสนเทศ มศว (สายการเรียนเทคนิค)"
+              : "GIS Web Developer & GIS Specialist · B.Sc. Geography & Geoinformatics, SWU (Technical Track)"}
           </p>
           <div className="flex flex-wrap gap-2 mt-2">
             {["Next.js", "FastAPI", "PostGIS", "TypeScript", "ArcGIS"].map(t => (
               <span key={t} className="text-xs font-light text-gray-500 border border-gray-300 rounded-full px-3 py-1">{t}</span>
             ))}
           </div>
-          <p className="text-xs font-light text-gray-300 mt-4">Scroll down ↓</p>
         </div>
         <div className="flex justify-center">
           <Image
@@ -323,12 +322,7 @@ const makeSections = (lang: "th" | "en") => [
 ];
 
 export default function ProfilePage() {
-  const [lang, setLang] = useState<"th" | "en">("th");
-
-  useEffect(() => {
-    const stored = localStorage.getItem("lang") as "th" | "en";
-    if (stored) setLang(stored);
-  }, []);
+  const [lang, setLang] = useState<"th" | "en">("en");
 
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -338,7 +332,7 @@ export default function ProfilePage() {
   const lastWheelTime = useRef(0);
 
   useEffect(() => {
-    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "th");
+    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "en");
     window.addEventListener("langchange", onLang);
     return () => window.removeEventListener("langchange", onLang);
   }, []);
@@ -380,6 +374,15 @@ export default function ProfilePage() {
       <div className={`absolute inset-0 flex flex-col justify-center px-24 ${sections[current].label ? "pt-28" : ""}`}>
         {sections[current].content}
       </div>
+      {current === 0 && (
+        <button
+          type="button"
+          onClick={() => goTo(1)}
+          className="fixed bottom-10 left-1/2 z-10 -translate-x-1/2 text-base font-light text-gray-400 transition-colors hover:text-gray-700 focus:outline-none"
+        >
+          Scroll down ↓
+        </button>
+      )}
       <div className="fixed right-8 top-1/2 -translate-y-1/2 flex flex-col gap-2">
         {sections.map((_, i) => (
           <button

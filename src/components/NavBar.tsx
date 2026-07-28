@@ -15,12 +15,12 @@ const links = [
 
 export default function NavBar() {
   const pathname = usePathname();
-  const [lang, setLang] = useState<"th" | "en">("th");
+  const [lang, setLang] = useState<"th" | "en">("en");
 
   useEffect(() => {
-    const stored = localStorage.getItem("lang") as "th" | "en";
-    if (stored) setLang(stored);
-    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "th");
+    localStorage.setItem("lang", "en");
+    window.dispatchEvent(new Event("langchange"));
+    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "en");
     window.addEventListener("langchange", onLang);
     return () => window.removeEventListener("langchange", onLang);
   }, []);

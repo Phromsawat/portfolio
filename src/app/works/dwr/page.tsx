@@ -44,12 +44,10 @@ const project: {
 
 export default function DWRPage() {
   const router = useRouter();
-  const [lang, setLang] = useState<"th" | "en">("th");
+  const [lang, setLang] = useState<"th" | "en">("en");
 
   useEffect(() => {
-    const stored = localStorage.getItem("lang") as "th" | "en";
-    if (stored) setLang(stored);
-    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "th");
+    const onLang = () => setLang((localStorage.getItem("lang") as "th" | "en") || "en");
     window.addEventListener("langchange", onLang);
     return () => window.removeEventListener("langchange", onLang);
   }, []);
