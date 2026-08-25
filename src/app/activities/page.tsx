@@ -139,6 +139,120 @@ const makeSections = (lang: "th" | "en") => [
     ),
   },
   {
+    label: lang === "th" ? "Digital Agriculture Platform" : "Digital Agriculture Platform",
+    content: (
+      <div className="grid grid-cols-2 gap-16 items-start w-full">
+        <div className="flex flex-col gap-4">
+          <div>
+            <p className="text-xs font-light text-gray-400 tracking-widest uppercase">
+              OSGeo Thailand × GISTDA
+            </p>
+            <p className="text-xs font-light text-gray-300 mt-0.5">Aug 2026</p>
+          </div>
+          <ul className="flex flex-col mt-2">
+            {[
+              {
+                title: lang === "th" ? "ผู้ร่วมทดสอบและประเมินผล" : "Testing & Evaluation Participant",
+                desc: lang === "th"
+                  ? "ร่วมทดสอบการใช้งานและประเมินประสิทธิภาพของ Digital Agriculture Platform โดยตรวจสอบการทำงานของระบบและส่วนติดต่อผู้ใช้จากมุมมองผู้ใช้งาน"
+                  : "Participated in hands-on testing and performance evaluation of the Digital Agriculture Platform, reviewing system functionality and UI from a user perspective.",
+              },
+              {
+                title: lang === "th" ? "ข้อเสนอแนะด้านประสบการณ์ผู้ใช้" : "Usability & UX Feedback",
+                desc: lang === "th"
+                  ? "ระบุจุดที่ควรปรับปรุงและให้ข้อเสนอแนะด้านความสะดวกในการใช้งานและประสบการณ์ผู้ใช้โดยรวม"
+                  : "Identified improvement areas and provided feedback on usability and the overall user experience.",
+              },
+            ].map(({ title, desc }) => (
+              <li key={title} className="flex gap-4 py-3 border-t border-gray-100">
+                <div>
+                  <p className="text-sm font-light text-gray-700">{title}</p>
+                  <p className="text-xs font-light text-gray-400 leading-relaxed mt-0.5">{desc}</p>
+                </div>
+              </li>
+            ))}
+            <div className="border-t border-gray-100" />
+          </ul>
+        </div>
+        <div>
+          <p className="text-xs font-light text-gray-400 tracking-widest uppercase mb-3">
+            {lang === "th" ? "ภาพกิจกรรม" : "Photos"}
+          </p>
+          <div className="grid grid-cols-2 gap-3">
+            <img
+              src="/digital-agriculture-testing-1.jpg"
+              alt="Digital Agriculture Platform testing session"
+              className="w-full h-56 object-cover rounded-xl"
+            />
+            <img
+              src="/digital-agriculture-testing-2.jpg"
+              alt="Digital Agriculture Platform evaluation participants"
+              className="w-full h-56 object-cover rounded-xl"
+            />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    label: lang === "th" ? "Thailand User Conference 2026" : "Thailand User Conference 2026",
+    content: (
+      <div className="grid grid-cols-2 gap-16 items-start w-full">
+        <div className="flex flex-col gap-4">
+          <div>
+            <p className="text-xs font-light text-gray-400 tracking-widest uppercase">
+              TUC2026 · ESRI Thailand
+            </p>
+            <p className="text-xs font-light text-gray-300 mt-0.5">
+              August 20, 2026 · Miracle Grand Convention Hotel
+            </p>
+          </div>
+          <ul className="flex flex-col mt-2">
+            {[
+              {
+                title: lang === "th" ? "ผู้เข้าร่วมงาน TUC2026" : "TUC2026 Attendee",
+                desc: lang === "th"
+                  ? "เข้าร่วมงาน Thailand User Conference 2026 ของ Esri Thailand ภายใต้หัวข้อ “GIS — Integrating Everything, Everywhere” เพื่อแลกเปลี่ยนความรู้กับชุมชน GIS และติดตามแนวโน้มเทคโนโลยีภูมิสารสนเทศ"
+                  : "Attended Esri Thailand's Thailand User Conference 2026, “GIS — Integrating Everything, Everywhere,” to connect with the GIS community and follow emerging geospatial technology trends.",
+              },
+              {
+                title: lang === "th" ? "การประยุกต์ใช้ GIS แบบบูรณาการ" : "Integrated GIS Applications",
+                desc: lang === "th"
+                  ? "เรียนรู้แนวคิดการเชื่อมโยง GIS กับข้อมูล ระบบ และเทคโนโลยีหลากหลาย เพื่อสนับสนุนการตัดสินใจและการประยุกต์ใช้เชิงพื้นที่ในบริบทต่าง ๆ"
+                  : "Explored how GIS can connect data, systems, and technologies to support spatial decision-making and real-world applications.",
+              },
+            ].map(({ title, desc }) => (
+              <li key={title} className="flex gap-4 py-3 border-t border-gray-100">
+                <div>
+                  <p className="text-sm font-light text-gray-700">{title}</p>
+                  <p className="text-xs font-light text-gray-400 leading-relaxed mt-0.5">{desc}</p>
+                </div>
+              </li>
+            ))}
+            <div className="border-t border-gray-100" />
+          </ul>
+        </div>
+        <div>
+          <p className="text-xs font-light text-gray-400 tracking-widest uppercase mb-3">
+            {lang === "th" ? "ภาพกิจกรรม" : "Photos"}
+          </p>
+          <div className="grid grid-cols-2 gap-3">
+            <img
+              src="/tuc-2026-1.jpg"
+              alt="TUC2026 presentation at Esri Thailand"
+              className="w-full h-56 object-cover rounded-xl"
+            />
+            <img
+              src="/tuc-2026-2.jpg"
+              alt="TUC2026 event at Miracle Grand Convention Hotel"
+              className="w-full h-56 object-cover rounded-xl"
+            />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
     label: lang === "th" ? "Grab × OSM Imagery" : "Grab × OSM Imagery",
     content: (
       <div className="grid grid-cols-2 gap-16 items-start w-full">
