@@ -9,7 +9,6 @@ const links = [
   { href: "/profile", th: "โปรไฟล์", en: "Profile" },
   { href: "/works", th: "งาน", en: "Works" },
   { href: "/research", th: "วิจัย", en: "Research" },
-  { href: "/cv", th: "CV & ทรานสคริป", en: "CV & Transcript" },
   { href: "/activities", th: "กิจกรรม", en: "Activities" },
 ];
 

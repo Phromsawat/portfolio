@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import DrawingCanvas from "@/components/DrawingCanvas";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 const content = {
   th: {
@@ -16,7 +15,6 @@ const content = {
     works: "งาน",
     research: "วิจัย",
     hint: "กดเม้าค้างแล้วลากเพื่อวาดรูป",
-    cv: "CV & ทรานสคริป",
     activities: "กิจกรรม",
   },
   en: {
@@ -27,19 +25,13 @@ const content = {
     works: "Works",
     research: "Research",
     hint: "Click and drag to draw",
-    cv: "CV & Transcript",
     activities: "Activities",
   },
 };
 
 export default function Home() {
-  const router = useRouter();
   const [lang, setLang] = useState<"th" | "en">("en");
   const [step, setStep] = useState(0);
-  const handleCVClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    router.push("/cv");
-  };
 
   const changeLang = (l: "th" | "en") => {
     setLang(l);
@@ -147,17 +139,6 @@ export default function Home() {
             />
             <span className="text-xs font-medium">{t.research}</span>
           </Link>
-          <a href="#" onClick={handleCVClick} className="flex flex-col items-center gap-1 wiggle">
-            <Image
-              src="/folder.png"
-              alt="cv"
-              width={64}
-              height={64}
-              className="w-16 h-16"
-              style={{ filter: "hue-rotate(202deg) saturate(1.3) brightness(1.25)" }}
-            />
-            <span className="text-xs font-medium">{t.cv}</span>
-          </a>
           <Link href="/activities" className="flex flex-col items-center gap-1 wiggle">
             <Image
               src="/folder.png"
